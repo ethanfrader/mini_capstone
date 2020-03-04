@@ -6,16 +6,16 @@ class Api::ProductsController < ApplicationController
 
   def ipa_method
     @product = Product.find_by(name: "IPA")
-    render "ipa_product.json.jb"
+    render "product.json.jb"
   end
 
   def brown_ale_method
     @product = Product.find_by(name: "Brown Ale")
-    render "ale_product.json.jb"
+    render "product.json.jb"
   end
 
   def hefeweizen_method
     @product = Product.find_by(name: "Hefeweizen")
-    render "hefeweizen_product.json.jb"
+    render "product.json.jb"
   end
 end
