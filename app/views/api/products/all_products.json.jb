@@ -1,0 +1,11 @@
+json = []
+@products.each do |product|
+  json << {
+    name: product.name,
+    description: product.description,
+    abv: product.abv,
+    ounces: product.ounces,
+    price: product.price,
+  }
+end
+return json
