@@ -1,0 +1,7 @@
+{
+  name: @product.name,
+  description: @product.description,
+  abv: @product.abv,
+  ounces: @product.ounces,
+  price: @product.price,
+}
