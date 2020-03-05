@@ -1,7 +1,13 @@
-{
-  name: @product.name,
-  description: @product.description,
-  abv: @product.abv,
-  ounces: @product.ounces,
-  price: @product.price,
-}
+json = []
+if @product != nil
+  json << {
+    name: @product.name,
+    description: @product.description,
+    abv: @product.abv,
+    ounces: @product.ounces,
+    price: @product.price,
+  }
+else
+  json << { message: "No product selected." }
+end
+return json

@@ -4,6 +4,12 @@ class Api::ProductsController < ApplicationController
     render "all_products.json.jb"
   end
 
+  def specific_product_method
+    this_product = params["product_name"]
+    @product = Product.find_by(name: this_product)
+    render "product.json.jb"
+  end
+
   def ipa_method
     @product = Product.find_by(name: "IPA")
     render "product.json.jb"
