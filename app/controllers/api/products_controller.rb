@@ -1,27 +1,12 @@
 class Api::ProductsController < ApplicationController
-  def all_products_method
+  def index
     @products = Product.all
-    render "all_products.json.jb"
+    render "index.json.jb"
   end
 
-  def specific_product_method
-    this_product = params["product_name"]
-    @product = Product.find_by(name: this_product)
-    render "product.json.jb"
-  end
-
-  def ipa_method
-    @product = Product.find_by(name: "IPA")
-    render "product.json.jb"
-  end
-
-  def brown_ale_method
-    @product = Product.find_by(name: "Brown Ale")
-    render "product.json.jb"
-  end
-
-  def hefeweizen_method
-    @product = Product.find_by(name: "Hefeweizen")
-    render "product.json.jb"
+  def show
+    product_id = params["id"]
+    @product = Product.find_by(id: product_id)
+    render "show.json.jb"
   end
 end
