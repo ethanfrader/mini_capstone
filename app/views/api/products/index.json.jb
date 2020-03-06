@@ -1,6 +1,7 @@
 json = []
 @products.each do |product|
   json << {
+    id: product.id,
     name: product.name,
     description: product.description,
     abv: product.abv,

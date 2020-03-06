@@ -1,6 +1,7 @@
 json = []
 if @product != nil
   json << {
+    id: @product.id,
     name: @product.name,
     description: @product.description,
     abv: @product.abv,
