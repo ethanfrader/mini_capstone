@@ -4,12 +4,6 @@ class Api::ProductsController < ApplicationController
     render "index.json.jb"
   end
 
-  def show
-    product_id = params["id"]
-    @product = Product.find_by(id: product_id)
-    render "show.json.jb"
-  end
-
   def create
     @product = Product.new({
       name: params["name"],
@@ -20,5 +14,21 @@ class Api::ProductsController < ApplicationController
     })
     @product.save
     render "create.json.jb"
+  end
+
+  def show
+    @product = Product.find_by(id: params["id"])
+    render "show.json.jb"
+  end
+
+  def update
+    @product = Product.find_by(id: params["id"])
+    @product.name = params["name"] || product.name
+    @product.description = params["description"] || product.description
+    @product.abv = params["abv"] || product.abv
+    @product.ounces = params["ounces"] || product.ounces
+    @product.price = params["price"] || product.price
+    @product.save
+    render "show.json.jb"
   end
 end
