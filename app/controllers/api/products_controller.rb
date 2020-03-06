@@ -13,7 +13,7 @@ class Api::ProductsController < ApplicationController
       abv: params["abv"],
     })
     @product.save
-    render "create.json.jb"
+    render "show.json.jb"
   end
 
   def show
@@ -23,11 +23,12 @@ class Api::ProductsController < ApplicationController
 
   def update
     @product = Product.find_by(id: params["id"])
-    @product.name = params["name"] || product.name
-    @product.description = params["description"] || product.description
-    @product.abv = params["abv"] || product.abv
-    @product.ounces = params["ounces"] || product.ounces
-    @product.price = params["price"] || product.price
+    @product.name = params["name"] || @product.name
+    @product.description = params["description"] || @product.description
+    @product.abv = params["abv"] || @product.abv
+    @product.ounces = params["ounces"] || @product.ounces
+    @product.price = params["price"] || @product.price
+    @product.image_url = params["image_url"] || @product.image_url
     @product.save
     render "show.json.jb"
   end

@@ -1,12 +1,11 @@
-json = []
-@products.each do |product|
-  json << {
+@products.map do |product|
+  {
     id: product.id,
     name: product.name,
     description: product.description,
     abv: product.abv,
     ounces: product.ounces,
     price: product.price,
+    image_url: product.image_url,
   }
 end
-return json
