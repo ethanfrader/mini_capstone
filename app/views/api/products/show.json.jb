@@ -6,4 +6,7 @@
   ounces: @product.ounces,
   price: @product.price,
   image_url: @product.image_url,
+  discount: @product.is_discounted?,
+  tax: @product.tax,
+  total: @product.total,
 }
