@@ -29,6 +29,8 @@ class Api::ProductsController < ApplicationController
       description: params["description"],
       ounces: params["ounces"],
       abv: params["abv"],
+      image_url: params["image_url"],
+      supplier_id: params["supplier_id"],
     })
     if @product.save
       render "show.json.jb"
@@ -50,6 +52,7 @@ class Api::ProductsController < ApplicationController
     @product.ounces = params["ounces"] || @product.ounces
     @product.price = params["price"] || @product.price
     @product.image_url = params["image_url"] || @product.image_url
+    @product.supplier_id = params["supplier_id"] || @product.supplier_id
     if @product.save
       render "show.json.jb"
     else
