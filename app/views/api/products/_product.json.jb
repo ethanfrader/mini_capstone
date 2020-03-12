@@ -10,4 +10,5 @@
   discount: product.is_discounted?,
   tax: product.tax,
   total: product.total,
+  supplier_info: product.supplier,
 }
