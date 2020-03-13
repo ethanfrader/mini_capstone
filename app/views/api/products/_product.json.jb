@@ -6,7 +6,7 @@
   ounces: product.ounces,
   price: product.price,
   supplier_id: product.supplier_id,
-  image_url: product.image_url,
+  images: product.images,
   discount: product.is_discounted?,
   tax: product.tax,
   total: product.total,

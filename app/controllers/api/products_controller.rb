@@ -29,9 +29,13 @@ class Api::ProductsController < ApplicationController
       description: params["description"],
       ounces: params["ounces"],
       abv: params["abv"],
-      image_url: params["image_url"],
+      # image_url: params["image_url"],
       supplier_id: params["supplier_id"],
     })
+    # if params["image_url"]
+    #   image = Image.new(url: params["url"], :product_id => @product.id)
+    #   image.save
+    # end
     if @product.save
       render "show.json.jb"
     else
@@ -51,7 +55,7 @@ class Api::ProductsController < ApplicationController
     @product.abv = params["abv"] || @product.abv
     @product.ounces = params["ounces"] || @product.ounces
     @product.price = params["price"] || @product.price
-    @product.image_url = params["image_url"] || @product.image_url
+    # @product.image_url = params["image_url"] || @product.image_url
     @product.supplier_id = params["supplier_id"] || @product.supplier_id
     if @product.save
       render "show.json.jb"
