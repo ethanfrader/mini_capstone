@@ -32,11 +32,11 @@ class Api::ProductsController < ApplicationController
       # image_url: params["image_url"],
       supplier_id: params["supplier_id"],
     })
-    # if params["image_url"]
-    #   image = Image.new(url: params["url"], :product_id => @product.id)
-    #   image.save
-    # end
     if @product.save
+      if !!params["image_url"]
+        ## this is very much not RESTful :/
+        Image.create(url: params["image_url"], product_id: @product.id)
+      end
       render "show.json.jb"
     else
       render json: { errors: @product.errors.full_messages, status: :unprocessable_entity }
