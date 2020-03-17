@@ -6,5 +6,5 @@
   subtotal: @order.subtotal,
   tax: @order.tax,
   total: @order.total,
-  product: Product.find_by(id: @order.product_id),
+  product: @order.product,
 }
