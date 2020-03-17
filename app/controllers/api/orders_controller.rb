@@ -10,13 +10,19 @@ class Api::OrdersController < ApplicationController
   end
 
   def create
+    product = Product.find_by(id: params["product_id"])
+
+    calculated_subtotal = product.price * params["quantity"].to_i
+    calculated_tax = product.tax * params["quantity"].to_i
+    calculated_total = calculated_subtotal + calculated_tax
+
     @order = Order.new(
       user_id: current_user.id,
       product_id: params["product_id"],
       quantity: params["quantity"],
-      subtotal: Product.find_by(id: params["product_id"]).price * params["quantity"].to_i,
-      tax: Product.find_by(id: params["product_id"]).tax * params["quantity"].to_i,
-      total: Product.find_by(id: params["product_id"]).price * params["quantity"].to_i + Product.find_by(id: params["product_id"]).tax * params["quantity"].to_i,
+      subtotal: calculated_subtotal,
+      tax: calculated_tax,
+      total: calculated_total,
     )
     @order.save
     render "show.json.jb"
