@@ -1,4 +1,14 @@
 class Api::OrdersController < ApplicationController
+  def index
+    if current_user
+      @orders = current_user.orders
+
+      render "index.json.jb"
+    else
+      render json: []
+    end
+  end
+
   def create
     @order = Order.new(
       user_id: current_user.id,
