@@ -7,6 +7,7 @@ class Product < ApplicationRecord
     Supplier.find_by(id: supplier_id)
   end
 
+  belongs_to :category_product
   has_many :orders
   has_many :images
   # def images
