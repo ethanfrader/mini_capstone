@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   end
 
   has_many :category_products
+  has_many :categories, through: :category_products
   has_many :orders
   has_many :images
   # def images
