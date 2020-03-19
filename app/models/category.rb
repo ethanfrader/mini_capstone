@@ -1,3 +1,3 @@
 class Category < ApplicationRecord
-  belongs_to :category_product
+  has_many :category_products
 end
