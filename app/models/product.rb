@@ -9,11 +9,11 @@ class Product < ApplicationRecord
 
   has_many :category_products
   has_many :categories, through: :category_products
-  has_many :orders
   has_many :images
-  # def images
-  #   Image.where(product_id: id)
-  # end
+
+  has_many :carted_products
+  has_many :orders, through: :carted_products
+  belongs_to :user, through: :carted_products
 
   def is_discounted?
     discount = false
