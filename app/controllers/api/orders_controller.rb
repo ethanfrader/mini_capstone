@@ -7,23 +7,13 @@ class Api::OrdersController < ApplicationController
   end
 
   def create
-    @carted_products = current_user.products_in_cart
-    calculated_subtotal = 0
-    calculated_tax = 0
-    calculated_total = 0
-    @carted_products.each do |carted_product|
-      calculated_subtotal += carted_product.product.price * carted_product.quantity
-      calculated_tax += carted_product.product.tax * carted_product.quantity
-    end
-
-    @order = Order.new({
+    @order = Order.new(
       user_id: current_user.id,
-      subtotal: calculated_subtotal,
-      tax: calculated_tax,
-      total: calculated_subtotal + calculated_tax,
-    })
+    )
+    @carted_products = current_user.products_in_cart
     if @order.save
-      @carted_products.update_all(status: "purchased", order_id: @order.id)
+      @carted_products.update_all(status: "purchased", order_id: @order.id) #this line is essential to come before .update_totals since it passes/connects carted_products with the created order so we can access them for the update
+      @order.update_totals
       render "show.json.jb"
     else
       render json: { errors: @order.errors.full_messages, status: :unprocessable_entity }
