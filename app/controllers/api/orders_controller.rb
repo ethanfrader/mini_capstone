@@ -7,7 +7,7 @@ class Api::OrdersController < ApplicationController
   end
 
   def create
-    @carted_products = current_user.carted_products.where(status: "carted")
+    @carted_products = current_user.products_in_cart
     calculated_subtotal = 0
     calculated_tax = 0
     calculated_total = 0
