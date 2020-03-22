@@ -23,6 +23,7 @@ class Api::OrdersController < ApplicationController
       total: calculated_subtotal + calculated_tax,
     })
     if @order.save
+      # this part doesn't change the carted_products table for some reason
       current_user.carted_products.where(status: "carted").map do |carted_product|
         carted_product.status = "purchased"
         carted_product.order_id = @order.id
